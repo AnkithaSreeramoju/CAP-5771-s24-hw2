@@ -27,37 +27,38 @@ def question1():
     level1["smoking_info_gain"] = 0.2780719051126377
 
     level1["cough"] = -1.0
-    level1["cough_info_gain"] = -1.0
+    level1["cough_info_gain"] = 0.0348
 
     level1["radon"] = -1.0
-    level1["radon_info_gain"] = -1.0
+    level1["radon_info_gain"] = 0.2364
+
 
     level1["weight_loss"] = -1.0
-    level1["weight_loss_info_gain"] = -1.0
+    level1["weight_loss_info_gain"] = 0.0291
 
     level2_left["smoking"] = -1.0
-    level2_left["smoking_info_gain"] = -1.0
+    level2_left["smoking_info_gain"] = 0.0
     level2_right["smoking"] = -1.0
-    level2_right["smoking_info_gain"] = -1.0
+    level2_right["smoking_info_gain"] = 0.0
 
     level2_left["radon"] = -1.0
-    level2_left["radon_info_gain"] = 0.0
+    level2_left["radon_info_gain"] = 0.0729
 
-    level2_left["cough"] = 0.8812908992306927
-    level2_left["cough_info_gain"] = 0.7219280948873623
+    level2_left["cough"] = 1.0
+    level2_left["cough_info_gain"] = 0.7219
 
     level2_left["weight_loss"] = -1.0
-    level2_left["weight_loss_info_gain"] = -1.0
+    level2_left["weight_loss_info_gain"] = 0.1710
 
-    level2_right["radon"] = 0.7219280948873623
-    level2_right["radon_info_gain"] = 0.7219280948873623
+    level2_right["radon"] = 1.0
+    level2_right["radon_info_gain"] = 0.7219
 
     level2_right["cough"] = -1.0
-    level2_right["cough_info_gain"] = -1.0
+    level2_right["cough_info_gain"] = 0.3219
 
     level2_right["weight_loss"] = -1.0
-    level2_right["weight_loss_info_gain"] = -1.0
-
+    level2_right["weight_loss_info_gain"] = 0.1711
+    
     answer["level1"] = level1
     answer["level2_left"] = level2_left
     answer["level2_right"] = level2_right
@@ -92,7 +93,7 @@ def question2():
     # Answers are floats
     answer["(a) entropy_entire_data"] = 1.4253
     # Infogain
-    answer["(b) x < 0.2"] = 0.177
+    answer["(b) x < 0.2"] = 0.1774
     answer["(b) x < 0.7"] = 0.355
     answer["(b) y < 0.6"] = 0.347
 
@@ -130,12 +131,12 @@ def question3():
     answer["(b) Gini, ID"] = 0.0
     answer["(c) Gini, Gender"] = 0.48
     answer["(d) Gini, Car type"] = 0.1625
-    answer["(e) Gini, Shirt type"] = 0.491
+    answer["(e) Gini, Shirt type"] = 0.4914
 
     answer["(f) attr for splitting"] = "Car type"
 
     # Explanatory text string
-    answer["(f) explain choice"] = "The attribute that is used for splitting after the root node is car type because it has the least Gini index."
+    answer["(f) explain choice"] = "The attribute  has the least Gini index."
 
     return answer
 
@@ -263,19 +264,19 @@ def question7():
     answer = {}
 
     # float
-    answer["a, info gain, ID"] = 0.0
-    answer["b, info gain, Handedness"] = -1.474
+    answer["a, info gain, ID"] = 1.0
+    answer["b, info gain, Handedness"] = 0.531
 
     # string: "ID" or "Handedness"
-    answer["c, which attrib"] = "Based on the information gain, Handedness should not be chosen as the splitting attribute because it results in negative information gain. So we will choose the ID attribute"
+    answer["c, which attrib"] = "ID"
 
     # answer is a float
-    answer["d, gain ratio, ID"] = 0.0
-    answer["e, gain ratio, Handedness"] = -0.737
+    answer["d, gain ratio, ID"] = 0.2314
+    answer["e, gain ratio, Handedness"] = 0.531
 
     # string: one of 'ID' or 'Handedness' based on gain ratio
     # choose the attribute with the largest gain ratio
-    answer["f, which attrib"] = "Based"
+    answer["f, which attrib"] = "Handedness"
 
     return answer
 
