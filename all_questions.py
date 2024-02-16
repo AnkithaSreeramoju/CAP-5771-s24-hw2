@@ -23,40 +23,40 @@ def question1():
     level2_left = {}
     level2_right = {}
 
-    level1["smoking"] = 1 # 0.72
-    level1["smoking_info_gain"] = 0.2781
+    level1["smoking"] = 1.0
+    level1["smoking_info_gain"] = 0.2780719051126377
 
-    level1["cough"] = -1 # 0.97
-    level1["cough_info_gain"] = 0.0349
+    level1["cough"] = -1.0
+    level1["cough_info_gain"] = -1.0
 
-    level1["radon"] = -1 # 0.76
-    level1["radon_info_gain"] = 0.2365
+    level1["radon"] = -1.0
+    level1["radon_info_gain"] = -1.0
 
-    level1["weight_loss"] = -1 # 0.97
-    level1["weight_loss_info_gain"] = 0.029
+    level1["weight_loss"] = -1.0
+    level1["weight_loss_info_gain"] = -1.0
 
-    level2_left["smoking"] = -1
-    level2_left["smoking_info_gain"] = -1
-    level2_right["smoking"] = -1
-    level2_right["smoking_info_gain"] = -1
+    level2_left["smoking"] = -1.0
+    level2_left["smoking_info_gain"] = -1.0
+    level2_right["smoking"] = -1.0
+    level2_right["smoking_info_gain"] = -1.0
 
-    level2_left["radon"] = 1
-    level2_left["radon_info_gain"] = 0.7219
+    level2_left["radon"] = -1.0
+    level2_left["radon_info_gain"] = 0.0
 
-    level2_left["cough"] = -1
-    level2_left["cough_info_gain"] = 0.3219
+    level2_left["cough"] = 0.8812908992306927
+    level2_left["cough_info_gain"] = 0.7219280948873623
 
-    level2_left["weight_loss"] = -1
-    level2_left["weight_loss_info_gain"] = 0.171
+    level2_left["weight_loss"] = -1.0
+    level2_left["weight_loss_info_gain"] = -1.0
 
-    level2_right["radon"] = 1
-    level2_right["radon_info_gain"] = 0.7219
+    level2_right["radon"] = 0.7219280948873623
+    level2_right["radon_info_gain"] = 0.7219280948873623
 
-    level2_right["cough"] = -1
-    level2_right["cough_info_gain"] = 0.3219
+    level2_right["cough"] = -1.0
+    level2_right["cough_info_gain"] = -1.0
 
-    level2_right["weight_loss"] = -1
-    level2_right["weight_loss_info_gain"] = 0.171
+    level2_right["weight_loss"] = -1.0
+    level2_right["weight_loss_info_gain"] = -1.0
 
     answer["level1"] = level1
     answer["level2_left"] = level2_left
@@ -64,21 +64,15 @@ def question1():
 
     # Fill up `construct_tree``
     # tree, training_error = construct_tree()
-    tree = u.BinaryTree("smoking == Yes")  # MUST STILL CREATE THE TREE *****
-    A = tree.insert_left("cough = Yes")
-    B = tree.insert_right("randon == Yes")
-    A.insert_left("y")
-    A.insert_left("y")
-    A.insert_left("y")
-    A.insert_left("y")
-    A.insert_left("n")
-    B.insert_left("y")
-    B.insert_right("n")
-    B.insert_right("n")
-    B.insert_right("n")
-    B.insert_right("n")
-    # tree, training_error = construct_tree
-    # tree = U.BinaryTree("root")
+    tree = u.BinaryTree("smoking")  # MUST STILL CREATE THE TREE *****
+    A = tree.insert_left("Chronic Cough")
+    B = tree.insert_right("Radon")
+    A.insert_left("Yes")
+    A.insert_right("No")
+    B.insert_left("Yes")
+    B.insert_right("No")
+    tree.print_tree()
+
     answer["tree"] = tree  # use the Tree structure
     # answer["training_error"] = training_error
     answer["training_error"] = 0.0  
@@ -93,22 +87,34 @@ def question2():
     answer = {}
 
     # Answers are floats
-    answer["(a) entropy_entire_data"] = 0.
+    answer["(a) entropy_entire_data"] = 1.0
+
     # Infogain
-    answer["(b) x <= 0.2"] = 0.
-    answer["(b) x <= 0.7"] = 0.
-    answer["(b) y <= 0.6"] = 0.
+    answer["(b) x < 0.2"] = 0.46438561897747244
+    answer["(b) x < 0.7"] = 0.3602012209808308
+    answer["(b) y < 0.6"] = 0.44217935649972373
 
     # choose one of 'x=0.2', 'x=0.7', or 'x=0.6'
-    answer["(c) attribute"] = ""  
+    answer["(c) attribute"] = "x = 0.7"
 
     # Use the Binary Tree structure to construct the tree
     # Answer is an instance of BinaryTree
-    tree = u.BinaryTree("Root")
+    tree = u.BinaryTree("y = 0.7")
+    tree.insert_left("x=0.7")
+    tree.left.insert_left("B")
+    tree.left.insert_right("y=0.3")
+    tree.left.right.insert_left("A")
+    tree.left.right.insert_right("C")
+
+    tree.insert_right("x=0.2")
+    tree.right.insert_left("y=0.8")
+    tree.right.insert_right("A")
+    tree.right.left.insert_left("C")
+    tree.right.left.insert_right("B")
+    tree.print_tree()
     answer["(d) full decision tree"] = tree
 
     return answer
-
 
 # ----------------------------------------------------------------------
 
@@ -149,49 +155,48 @@ def question4():
     #  'quantitative', 'interval', 'ratio'
     # If you have a choice between 'binary' and 'discrete', choose 'binary'
 
-    answer["a"] = ['binary', 'quantitative', 'interval']
+    answer["a"] = ["binary", "qualitative", "nominal"]
 
     # Explain if there is more than one interpretation. Repeat for the other questions. At least five words that form a sentence.
-    answer["a: explain"] = ""
+    answer["a: explain"] = "AM and PM are categories with no inherent order"
 
-    answer["b"] = ['continuous', 'quantitative', 'ratio']
-    answer["b: explain"] = ""
+    answer["b"] = ["continuous", "quantitative", "ratio"]
+    answer["b: explain"] = "Brightness can vary infinitely and has a meaningful zero point."
 
-    answer["c"] = ['continuous', 'qualitative', 'ordinal']
-    answer["c: explain"] = "This can also be interval in quantitative classification"
+    answer["c"] = ["continuous", "qualitative", "ordinal"]
+    answer["c: explain"] = "Continuous or discrete, depending on how judgments are recorded. If recorded on a continuous scale, it would be continuous and quantitative, ordinal. If recorded as categories (e.g., dim, moderate, bright), it would be discrete and qualitative, ordinal."
 
-    answer["d"] = ['continuous', 'quantitative', 'ratio']
-    answer["d: explain"] = ""
+    answer["d"] = ["Continuous", "quantitative", "ratio"]
+    answer["d: explain"] = "Angles can take any value within the specified range and have a meaningful zero point."
 
-    answer["e"] = ['discrete', 'qualitative', 'ordinal']
-    answer["e: explain"] = ""
+    answer["e"] = ["discrete", "qualitative", "nominal"]
+    answer["e: explain"] = "Bronze, Silver, Gold are categories with no inherent order."
 
-    answer["f"] = ['continuous', 'quantitative', 'ratio']
-    answer["f: explain"] = ""
+    answer["f"] = ["continuous", "quantitative", "ratio"]
+    answer["f: explain"] = "Height can vary infinitely and has a meaningful zero point."
 
-    answer["g"] = ['discrete', 'quantitative', 'ratio']
-    answer["g: explain"] = ""
+    answer["g"] = ["discrete", "quantitative", "ratio"]
+    answer["g: explain"] = "The number of patients is a whole number count with no meaningful fractions."
 
-    answer["h"] = ['discrete', 'qualitative', 'nominal']
-    answer["h: explain"] = ""
+    answer["h"] = ["discrete", "qualitative", "nominal"]
+    answer["h: explain"] = "ISBN numbers are unique identifiers for books but do not convey any inherent order or quantity."
 
-    answer["i"] = ['discrete', 'qualitative', 'nominal']
-    answer["i: explain"] = ""
+    answer["i"] = ["discrete", "qualitative", "ordinal"]
+    answer["i: explain"] = "These are categories with an inherent order from least to most light passing ability."
 
-    answer["j"] = ['discrete', 'qualitative', 'ordinal']
-    answer["j: explain"] = ""
+    answer["j"] = ["discrete","qualitative", "ordinal"]
+    answer["j: explain"] = "Military ranks have a hierarchical order."
 
-    answer["k"] = ['continuous', 'quantitative', 'ratio']
-    answer["k: explain"] = "it sometimes might be discrete when the measurement is like number of buildings away and it might be interval too"
+    answer["k"] = ["continuous", "quantitative", "ratio"]
+    answer["k: explain"] = "Distance can vary infinitely and has a meaningful zero point."
 
-    answer["l"] = ['continuous', 'quantitative', 'ratio']
-    answer["l: explain"] = ""
+    answer["l"] = ["continuous", "quantitative", "ratio"]
+    answer["l: explain"] = "Density can vary infinitely and has a meaningful zero point."
 
-    answer["m"] = ['discrete', 'qualitative', 'nominal']
-    answer["m: explain"] = ""
+    answer["m"] = ["discrete", "quantitative", "nominal"]
+    answer["m: explain"] = "The Check numbers are unique identifiers for coats with no inherent order."
 
     return answer
-
 
 # ----------------------------------------------------------------------
 
@@ -202,18 +207,18 @@ def question5():
     # Read appropriate section of book chapter 3
 
     # string: one of 'Model 1' or 'Model 2'
-    explain["a"] = "Model-2"
-    explain["a explain"] = "This is because model-2 is pruned version and it is less likely to overfit the data and have better performances on unseen data."
+    explain["a"] = "Model 2"
+    explain["a explain"] = "Because of its higher testing accuracy, Model 2 manages unseen data better. Given how much greater the training accuracy is than the testing accuracy, Model 1 appears to be overfitted."
 
     # string: one of 'Model 1' or 'Model 2'
-    explain["b"] = "Model-1"
-    explain["b explain"] = "Even though Model 1 performed better on the combined dataset (A + B), Model 2 would be the better option for classification tasks because of its better generalization capabilities. Importantly for real-world applications, Model 2 is more likely to perform well on unknown situations and is less likely to overfit to the training data."
+    explain["b"] = "Model 2"
+    explain["b explain"] = "The measures provided are just the averages of the two datasets' accuracies. Both the models have been trained on Dataset A, so they will always get them right, but Model 2 still has a higher accuracy when it comes to Dataset B, the real unseen data."
 
-    explain["c similarity"] = "Regularization"
-    explain["c similarity explain"] = "In order to aid in model selection and prevent overfitting, they both seek to incorporate model complexity into the loss function."
+    explain["c similarity"] = "Incorporation of Model Complexity"
+    explain["c similarity explain"] = "The goal of both pessimistic error estimate techniques and MDL is to penalize decision tree complexity. Assuming that simpler models generalize better to unseen data, they seek to strike a compromise between the tree's size or complexity and its ability to match the training data."
 
-    explain["c difference"] = "Criterion"
-    explain["c difference explain"] = "One difference between them is how they go about calculating model complexity, especially when it comes to decision trees."
+    explain["c difference"] = "Approach to Model Complexity"
+    explain["c difference explain"] = "The MDL Principle calls for a trade-off between the model's complexity—which is determined by how long the description must be in order to capture the model—and how well the model fits the data. On the other hand, the Pessimistic Error Estimate directly alters a decision tree's error estimate by including a penalty term that rises in complexity with the tree (for instance, the number of leaf nodes)."
 
     return explain
 
@@ -227,20 +232,25 @@ def question6():
     # value of the form "z <= float" where "z" is "x" or "y"
     #  and "float" is a floating point number (notice: <=)
     # The value could also be "A" or "B" if it is a leaf
-    answer["a, level 1"] = ""
-    answer["a, level 2, right"] =""
-    answer["a, level 2, left"] = ""
-    answer["a, level 3, left"] = ""
-    answer["a, level 3, right"] = ""
+    answer["a, level 1"] = "x <= 0.5"
+    answer["a, level 2, right"] ="A"
+    answer["a, level 2, left"] = "y <= 0.4"
+    answer["a, level 3, left"] = "A"
+    answer["a, level 3, right"] = "x <= 0.2"
 
     # run each datum through the tree. Count the number of errors and divide by number of samples. .
     # Since we have areas: calculate the area that is misclassified (total area is unity)
     # float between 0 and 1
-    answer["b, expected error"] = 0.
+    answer["b, expected error"] = 0.58
 
     # Use u.BinaryTree to define the tree. Create your tree.
     # Replace "root node" by the proper node of the form "z <= float"
-    tree = u.BinaryTree("root note")
+    tree = u.BinaryTree("x <= 0.5")
+
+    A = tree.insert_right("A")
+    B = tree.insert_left("y <= 0.4")
+    B.insert_left("A")
+    B.insert_right("x <= 0.2")
 
     answer["c, tree"] = tree
 
@@ -252,19 +262,19 @@ def question7():
     answer = {}
 
     # float
-    answer["a, info gain, ID"] = 1.0
-    answer["b, info gain, Handedness"] = 0.561
+    answer["a, info gain, ID"] = 0.0
+    answer["b, info gain, Handedness"] = -1.474
 
     # string: "ID" or "Handedness"
-    answer["c, which attrib"] = "ID"
+    answer["c, which attrib"] = "Based on the information gain, Handedness should not be chosen as the splitting attribute because it results in negative information gain. So we will choose the ID attribute"
 
     # answer is a float
-    answer["d, gain ratio, ID"] = 'undefined'
-    answer["e, gain ratio, Handedness"] = 0.561
+    answer["d, gain ratio, ID"] = 0.0
+    answer["e, gain ratio, Handedness"] = -0.737
 
     # string: one of 'ID' or 'Handedness' based on gain ratio
     # choose the attribute with the largest gain ratio
-    answer["f, which attrib"] = "Handedness"
+    answer["f, which attrib"] = "Based"
 
     return answer
 
