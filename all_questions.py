@@ -212,17 +212,17 @@ def question5():
 
     # string: one of 'Model 1' or 'Model 2'
     explain["a"] = "Model 2"
-    explain["a explain"] = "Because of its higher testing accuracy, Model 2 manages unseen data better. Given how much greater the training accuracy is than the testing accuracy, Model 1 appears to be overfitted."
+    explain["a explain"] = "Model 1 has high accuracy on A but lower accuracy on B, indicating overfitting; whereas, Model 2's accuracy on both datasets A and B is nearly same, indicating superior generalization to new data. "
 
     # string: one of 'Model 1' or 'Model 2'
     explain["b"] = "Model 2"
-    explain["b explain"] = "The measures provided are just the averages of the two datasets' accuracies. Both the models have been trained on Dataset A, so they will always get them right, but Model 2 still has a higher accuracy when it comes to Dataset B, the real unseen data."
+    explain["b explain"] = "Despite a minor loss in accuracy, Model 2 is still superior due to improved generalization and a lower likelihood of overfitting."
 
-    explain["c similarity"] = "Incorporation of Model Complexity"
-    explain["c similarity explain"] = "The goal of both pessimistic error estimate techniques and MDL is to penalize decision tree complexity. Assuming that simpler models generalize better to unseen data, they seek to strike a compromise between the tree's size or complexity and its ability to match the training data."
+    explain["c similarity"] = "Penalty on Complexity / Regularization"
+    explain["c similarity explain"] = "They are similar, since they penalize the complexity of the model"
 
-    explain["c difference"] = "Approach to Model Complexity"
-    explain["c difference explain"] = "The MDL Principle calls for a trade-off between the model's complexity—which is determined by how long the description must be in order to capture the model—and how well the model fits the data. On the other hand, the Pessimistic Error Estimate directly alters a decision tree's error estimate by including a penalty term that rises in complexity with the tree (for instance, the number of leaf nodes)."
+    explain["c difference"] = "Specificity"
+    explain["c difference explain"] = "MDL seeks a model with a low bit count for description, while pessimistic error tries to minimize tree error in order to prevent complicated decision trees."
 
     return explain
 
